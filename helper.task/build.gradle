@@ -8,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion 10
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
     }
     buildTypes {
         release {
@@ -28,7 +28,7 @@ dependencies {
 publish {
     groupId = 'io.github.the28awg'
     artifactId = 'helper.task'
-    publishVersion = '1.0'
+    publishVersion = '1.1'
     desc = 'Android Task Helper'
     licences = ['MIT']
     website = 'https://github.com/The28AWG/helper.task'

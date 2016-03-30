@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Task Helper</string>
+    <string name="no_active_task">Нет активных заданий.</string>
 </resources>

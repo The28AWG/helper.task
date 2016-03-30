@@ -1,4 +1,4 @@
-package io.github.the28awg.helper.task.app;
+package io.github.the28awg.helper.task;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,9 +13,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.HashMap;
-
-import io.github.the28awg.helper.task.Task;
-import io.github.the28awg.helper.task.TaskHelper;
 
 /**
  * Created by the28awg on 26.03.16.

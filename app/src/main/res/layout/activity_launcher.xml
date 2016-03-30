@@ -32,7 +32,7 @@
 
         <fragment
             android:id="@+id/fragment"
-            android:name="io.github.the28awg.helper.task.app.TaskWorkerFragment"
+            android:name="io.github.the28awg.helper.task.TaskWorkerFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:layout="@layout/fragment_task_worker" />
