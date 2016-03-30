@@ -1,8 +1,8 @@
 package io.github.the28awg.helper.task.app;
 
+import android.os.Bundle;
 import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 
 import io.github.the28awg.helper.task.Task;

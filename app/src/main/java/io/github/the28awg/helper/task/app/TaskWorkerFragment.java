@@ -24,6 +24,7 @@ public class TaskWorkerFragment extends Fragment {
 
     private ListView listView;
     private TaskWorkerListenerImpl listener;
+
     public TaskWorkerFragment() {
     }
 
@@ -56,9 +57,11 @@ public class TaskWorkerFragment extends Fragment {
     public static class TaskWorkerListenerImpl implements TaskHelper.TaskWorkerListener {
 
         private TaskAdapter adapter;
+
         private TaskWorkerListenerImpl(TaskAdapter adapter) {
             this.adapter = adapter;
         }
+
         @Override
         public void execute(Task task) {
             adapter.notifyDataSetChanged();
@@ -94,11 +97,6 @@ public class TaskWorkerFragment extends Fragment {
             mContext = context;
         }
 
-        static class ViewHolder {
-            TextView task_title;
-            ProgressBar task_progress;
-        }
-
         @Override
         public Task getItem(int i) {
             return TaskHelper.helper().tasks().get(i);
@@ -129,7 +127,7 @@ public class TaskWorkerFragment extends Fragment {
         public View getView(int position, View convertView, ViewGroup viewGroup) {
             ViewHolder viewHolder;
 
-            if (convertView == null){
+            if (convertView == null) {
                 LayoutInflater inflater = (LayoutInflater) mContext
                         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = inflater.inflate(R.layout.item_task_progress, viewGroup, false);
@@ -156,6 +154,11 @@ public class TaskWorkerFragment extends Fragment {
         @Override
         public int getCount() {
             return TaskHelper.helper().tasks().size();
+        }
+
+        static class ViewHolder {
+            TextView task_title;
+            ProgressBar task_progress;
         }
     }
 }

@@ -16,8 +16,9 @@ import io.github.the28awg.helper.task.TaskWorker;
 public class TaskHelper {
 
     private final TaskWorkerObservable taskWorkerObservable = new TaskWorkerObservable();
-    private ArrayList<Task> tasks = new ArrayList<>();
     private final Object lock = new Object();
+    private ArrayList<Task> tasks = new ArrayList<>();
+
     private TaskHelper() {
         taskWorkerObservable.registerObserver(new TaskWorkerListener() {
             @Override
@@ -48,6 +49,10 @@ public class TaskHelper {
         });
     }
 
+    public static TaskHelper helper() {
+        return Helper.TASK_HELPER;
+    }
+
     public <Result, Update> void task(final Task<Result, Update> task) {
         TaskWorker.worker().task(new TaskWrapper<>(task));
     }
@@ -62,15 +67,23 @@ public class TaskHelper {
         }
     }
 
-    public static TaskHelper helper() {
-        return Helper.TASK_HELPER;
+    public interface TaskWorkerListener {
+        void execute(Task task);
+
+        void update(Task task, Object progress);
+
+        void successful(Task task, Object result);
+
+        void failure(Task task, Exception e);
     }
+
     private static class Helper {
         static final TaskHelper TASK_HELPER = new TaskHelper();
     }
 
     private static class TaskWrapper<R, U> implements Task<R, U> {
         private Task<R, U> task;
+
         private TaskWrapper(Task<R, U> task) {
             this.task = task;
             new Handler(Looper.getMainLooper()).post(new Runnable() {
@@ -80,6 +93,7 @@ public class TaskHelper {
                 }
             });
         }
+
         @Override
         public R task(TaskContext<U> context) {
             return task.task(context);
@@ -104,20 +118,14 @@ public class TaskHelper {
         }
     }
 
-    public interface TaskWorkerListener {
-        void execute(Task task);
-        void update(Task task, Object progress);
-        void successful(Task task, Object result);
-        void failure(Task task, Exception e);
-    }
-
     public static class TaskWorkerObservable extends Observable<TaskWorkerListener> {
 
         private TaskWorkerObservable() {
 
         }
+
         private void update(Task task, Object progress) {
-            synchronized(mObservers) {
+            synchronized (mObservers) {
 //                for (int i = mObservers.size() - 1; i >= 0; i--) {
 //                    mObservers.get(i).update(task, progress);
 //                }
@@ -128,7 +136,7 @@ public class TaskHelper {
         }
 
         private void successful(Task task, Object result) {
-            synchronized(mObservers) {
+            synchronized (mObservers) {
 //                for (int i = mObservers.size() - 1; i >= 0; i--) {
 //                    mObservers.get(i).successful(task, result);
 //                }
@@ -139,7 +147,7 @@ public class TaskHelper {
         }
 
         private void failure(Task task, Exception e) {
-            synchronized(mObservers) {
+            synchronized (mObservers) {
 //                for (int i = mObservers.size() - 1; i >= 0; i--) {
 //                    mObservers.get(i).failure(task, e);
 //                }
@@ -150,7 +158,7 @@ public class TaskHelper {
         }
 
         private void execute(Task task) {
-            synchronized(mObservers) {
+            synchronized (mObservers) {
 //                for (int i = mObservers.size() - 1; i >= 0; i--) {
 //                    mObservers.get(i).execute(task);
 //                }
