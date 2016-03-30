@@ -1,14 +1,10 @@
-package io.github.the28awg.helper.task.app;
+package io.github.the28awg.helper.task;
 
 import android.database.Observable;
 import android.os.Handler;
 import android.os.Looper;
 
 import java.util.ArrayList;
-
-import io.github.the28awg.helper.task.Task;
-import io.github.the28awg.helper.task.TaskContext;
-import io.github.the28awg.helper.task.TaskWorker;
 
 /**
  * Created by the28awg on 26.03.16.

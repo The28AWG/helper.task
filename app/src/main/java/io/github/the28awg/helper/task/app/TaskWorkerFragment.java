@@ -15,6 +15,7 @@ import android.widget.TextView;
 import java.util.HashMap;
 
 import io.github.the28awg.helper.task.Task;
+import io.github.the28awg.helper.task.TaskHelper;
 
 /**
  * Created by the28awg on 26.03.16.
